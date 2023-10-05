@@ -2,7 +2,8 @@
 {
     public class InMemoryTeamStorage
     {
-        public Task<List<TeamMemberDb>> GetAllTeamMembersByTeamId(Guid teamId)
+        public static List<TeamMemberDb> StaticTeamMembers { get; set; }
+        public Task<List<TeamMemberDb>> GetAllTeamMembers()
         {
             var inactive1 = TeamMemberDb.Create("Mac Miller", "Mac", "Mobile Consultant");
             inactive1.IsActive = false;
@@ -21,14 +22,27 @@
                 inactive2
             };
 
-            var result = members
+            var result = members.Where(m=>m.IsActive)
                 .OrderBy(v => v.Name);
 
             return Task.FromResult(result.ToList());
         }
-
-        public void AddMember(object teamMember)
+        public async Task<List<TeamMemberDb>> GetAllTeamMembersByTeamId(Guid teamId)
+        { 
+            if( StaticTeamMembers == null)
+            {
+                StaticTeamMembers = await GetAllTeamMembers();
+            }
+            return StaticTeamMembers;
+        }
+        public async Task<List<TeamMemberDb>> AddMembers(List<TeamMemberDb> teamMember)
         {
+            foreach (var member in teamMember)
+            {
+                StaticTeamMembers.Add(member);
+            }
+
+            return StaticTeamMembers;
         }
     }
 }

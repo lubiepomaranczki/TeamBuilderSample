@@ -1,4 +1,6 @@
-﻿using TeamBuilder.TeamMembers.Application.AddTeamMembers;
+﻿using TeamBuilder.TeamMemberList.Application;
+using TeamBuilder.TeamMembers;
+using TeamBuilder.TeamMembers.Application.AddTeamMembers;
 
 namespace TeamBuilder;
 
@@ -8,7 +10,8 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
 
-        Routing.RegisterRoute("Add", typeof(AddTeamMembersPage));
+        Routing.RegisterRoute(AppConstants.Navigation.Add, typeof(AddTeamMembersPage));
+        Routing.RegisterRoute(AppConstants.Navigation.TeamMembers, typeof(TeamMembersPage));
     }
 }
 

@@ -21,14 +21,31 @@ public class TeamController : ControllerBase
     [HttpGet("{id:Guid}/Members")]
     public async Task<IActionResult> Get(Guid id)
     {
-        var response = await _teamStorage.GetAllTeamMembersByTeamId(id);
-        return Ok(response);
+        try
+        {
+            var response = await _teamStorage.GetAllTeamMembersByTeamId(id);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex.Message, ex);
+            return StatusCode(500);
+        }
     }
 
-    [HttpPost("{id:Guid}/AddMember")]
-    public async Task<IActionResult> AddTeamMember(Guid id, [FromBody] object teamMember)
+    [HttpPost("{id:Guid}/AddMembers")]
+    public async Task<IActionResult> AddTeamMember(Guid id, [FromBody] List<TeamMemberDb> teamMember)
     {
-        _teamStorage.AddMember(teamMember);
-        return Ok();
+        try
+        {
+            await _teamStorage.AddMembers(teamMember);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex.Message, ex);
+            return StatusCode(500);
+        }
+       
     }
 }

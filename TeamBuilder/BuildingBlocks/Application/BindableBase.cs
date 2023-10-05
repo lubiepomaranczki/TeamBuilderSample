@@ -27,6 +27,7 @@ namespace TeamBuilder.BuildingBlocks.Application
         {
             PropertyChanged?.Invoke(this, args);
         }
+        public virtual Task Initialize() => Task.CompletedTask;
     }
 }
 

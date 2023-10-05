@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:TeamBuilder.TeamMembers.Application.ViewModels"
+             xmlns:models="clr-namespace:TeamBuilder.TeamMembers.Application.Models"
+             x:Class="TeamBuilder.TeamMembers.Application.AddTeamMembers.AddTeamMembersPage"
+             Title="Add Member(s)"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="viewModels:AddTeamMembersViewModel">
+
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+    </ContentPage.Resources>
+    
+    <Grid RowDefinitions="*,Auto">
+        <Grid Grid.Row="0" RowDefinitions="*,Auto">
+            <StackLayout Grid.Row="0">
+                <ListView 
+                    RowHeight="130"
+                    ItemsSource="{Binding NewMembers}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="{x:Type models:TeamMemberViewModel}">
+                            <ViewCell>
+                                <Grid HorizontalOptions="Fill" RowDefinitions="Auto">
+                                    <Frame Grid.Row="0"
+                                            CornerRadius="16"
+                                            Margin="8"
+                                            BackgroundColor="LightBlue">
+                                        <StackLayout>
+                                            <Label Text="{Binding Name}" FontSize="16" FontAttributes="Bold"/>
+                                            <Label Text="{Binding NickName}" FontSize="12" TextColor="Gray"/>
+                                            <Label Text="{Binding Position}" FontSize="12" TextColor="Gray"/>
+                                            <Label Text="{Binding PhoneNumber}" FontSize="12" TextColor="Gray"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout Grid.Row="1">
+                <Frame CornerRadius="16"
+                                Margin="8"
+                                BackgroundColor="LightBlue">
+                    <StackLayout>
+                        <Entry Text="{Binding TeamMember.Name}" 
+                               Placeholder="Name" 
+                               FontSize="16" 
+                               PlaceholderColor="Gray" 
+                               FontAttributes="Bold">
+
+                        </Entry>
+                        <Entry Text="{Binding TeamMember.NickName}" Placeholder="NickName" FontSize="12" PlaceholderColor="Gray" TextColor="Gray">
+                            <Entry.Behaviors>
+                                <toolkit:CharactersValidationBehavior 
+                                    InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                    MinimumLength="1"
+                                    CharacterType="Letter"
+                                    Flags="ValidateOnValueChanged"
+                                    />
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Entry Text="{Binding TeamMember.Position}" Placeholder="Position" FontSize="12" PlaceholderColor="Gray" TextColor="Gray">
+                            <Entry.Behaviors>
+                                <toolkit:CharactersValidationBehavior 
+                                    InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                    MinimumLength="1"
+                                    CharacterType="Letter"
+                                    Flags="ValidateOnValueChanged"
+                                    />
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Entry Text="{Binding TeamMember.PhoneNumber}" Placeholder="+48-000-000-000" Keyboard="Numeric" FontSize="12" PlaceholderColor="Gray"  TextColor="Gray">
+                            <Entry.Behaviors>
+                                <toolkit:MaskedBehavior  
+                                   Mask="+48-000-000-000"
+                                   UnmaskedCharacter="0"/>
+                            </Entry.Behaviors>
+                        </Entry>
+                    </StackLayout>
+                </Frame>
+
+                <Button Text="Add new" 
+                            Command="{Binding AddNewMemberCommand}"
+                            CommandParameter="{Binding TeamMember}"
+                            Margin="16" HorizontalOptions="Center"/>
+            </StackLayout>
+        </Grid>
+        <Button Grid.Row="1" 
+                Command="{Binding SaveMembersCommand}"
+                CommandParameter="{Binding NewMembers}"
+                Text="Save"  
+                Margin="16" 
+                HorizontalOptions="Fill"/>
+    </Grid>
+</ContentPage>
