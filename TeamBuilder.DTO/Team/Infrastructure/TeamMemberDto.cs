@@ -1,6 +1,6 @@
-﻿namespace TeamBuilder.API.Team.Infrastructure
+﻿namespace TeamBuilder.DTO.Team.Infrastructure
 {
-    public class TeamMemberDb
+    public class TeamMemberDto
     {
         public string Name { get; set; }
         public string NickName { get; set; }
@@ -9,14 +9,14 @@
 
         public bool IsActive { get; set; }
 
-        internal static TeamMemberDb Create(string name, string nickName, string position)
+        public static TeamMemberDto Create(string name, string nickName, string position, string? phoneNumber = null)
         {
-            return new TeamMemberDb
+            return new TeamMemberDto
             {
                 Name = name,
                 NickName = nickName,
                 Position = position,
-                PhoneNumber = "+48-000-555-999-2",
+                PhoneNumber = phoneNumber,
                 IsActive = true
             };
         }

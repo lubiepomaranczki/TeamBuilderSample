@@ -1,7 +1,6 @@
-﻿using ObjCRuntime;
-using UIKit;
+﻿using UIKit;
 
-namespace TeamBuilder;
+namespace TeamBuilder.Platforms.iOS;
 
 public class Program
 {

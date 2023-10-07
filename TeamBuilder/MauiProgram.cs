@@ -9,7 +9,7 @@ public static class MauiProgram
     {
         var builder = MauiApp.CreateBuilder();
         builder
-            .UseMauiApp<App>()
+            .UsePrismApp<App>(PrismStartup.Configure)
             .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {

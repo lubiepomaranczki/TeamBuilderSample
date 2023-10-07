@@ -32,4 +32,7 @@
     <Folder Include="Team\Application\Commands\" />
     <Folder Include="Team\Application\Queries\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TeamBuilder.DTO\TeamBuilder.DTO.csproj" />
+  </ItemGroup>
 </Project>

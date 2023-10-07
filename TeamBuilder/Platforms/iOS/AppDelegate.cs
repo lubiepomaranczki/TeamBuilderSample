@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace TeamBuilder;
+namespace TeamBuilder.Platforms.iOS;
 
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate

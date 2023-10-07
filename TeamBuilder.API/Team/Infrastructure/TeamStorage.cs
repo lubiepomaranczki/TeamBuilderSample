@@ -1,34 +1,42 @@
-﻿namespace TeamBuilder.API.Team.Infrastructure
+﻿using TeamBuilder.DTO.Team.Infrastructure;
+
+namespace TeamBuilder.API.Team.Infrastructure
 {
-    public class InMemoryTeamStorage
+    public static class InMemoryTeamStorage
     {
-        public Task<List<TeamMemberDb>> GetAllTeamMembersByTeamId(Guid teamId)
+        private static readonly List<TeamMemberDto> TeamMembers;
+
+        static InMemoryTeamStorage()
         {
-            var inactive1 = TeamMemberDb.Create("Mac Miller", "Mac", "Mobile Consultant");
+            var inactive1 = TeamMemberDto.Create("Mac Miller", "Mac", "Mobile Consultant");
             inactive1.IsActive = false;
 
-            var inactive2 = TeamMemberDb.Create("Amy Jade Whinehouse", "Amy", "Eurockéennes");
+            var inactive2 = TeamMemberDto.Create("Amy Jade Whinehouse", "Amy", "Eurockéennes");
             inactive2.IsActive = false;
 
-
-            var members = new List<TeamMemberDb>
+            TeamMembers = new List<TeamMemberDto>
             {
-                TeamMemberDb.Create("John Doe", "Joe", "Senior Xamarin Developer"),
-                TeamMemberDb.Create("Alice Chain", "Margot", "Lead Designer"),
-                TeamMemberDb.Create("Jack Black", "Blacky", "Full Stack .Net Developer"),
-                TeamMemberDb.Create("Gerald Earl Gilluze", "G-Eazy", "Project Manager"),
+                TeamMemberDto.Create("John Doe", "Joe", "Senior Xamarin Developer"),
+                TeamMemberDto.Create("Alice Chain", "Margot", "Lead Designer"),
+                TeamMemberDto.Create("Jack Black", "Blacky", "Full Stack .Net Developer"),
+                TeamMemberDto.Create("Gerald Earl Gilluze", "G-Eazy", "Project Manager"),
                 inactive1,
                 inactive2
             };
+        }
 
-            var result = members
+        public static Task<List<TeamMemberDto>> GetAllTeamMembersByTeamId(Guid teamId)
+        {
+            var result = TeamMembers
+                .Where(x => x.IsActive)
                 .OrderBy(v => v.Name);
 
             return Task.FromResult(result.ToList());
         }
 
-        public void AddMember(object teamMember)
+        public static void AddMember(TeamMemberDto teamMemberDto)
         {
+            TeamMembers.Add(teamMemberDto);
         }
     }
 }
