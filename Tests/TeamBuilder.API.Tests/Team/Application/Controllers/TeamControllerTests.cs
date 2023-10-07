@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Logging;
 using Moq;
 using TeamBuilder.API.Team.Application.Controllers;
+using TeamBuilder.DTO.Team.Infrastructure;
 
 namespace TeamBuilder.API.Tests.Team.Application.Controllers
 {
@@ -45,12 +46,12 @@ namespace TeamBuilder.API.Tests.Team.Application.Controllers
             var controller = new TeamController(loggerStub.Object);
 
             //act
-            var response = await controller.AddTeamMember(Guid.NewGuid(), new
+            var response = await controller.AddTeamMember(Guid.NewGuid(), new TeamMemberDto
             {
                 Name = "Test Angie",
-                NickName = 69,
-                Position = 123,
-                PhoneNumer = "Sorry, I won't give you this"
+                NickName = "69",
+                Position = "123",
+                PhoneNumber = "Sorry, I won't give you this"
             });
 
             //assert
