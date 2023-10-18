@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:TeamBuilder.TeamMembers.Application"
-             x:Class="TeamBuilder.TeamMemberList.Application.TeamMembersPage"
+             x:Class="TeamBuilder.TeamMembers.Application.TeamMembersPage"
              Title="The Team"
              x:DataType="viewModels:TeamMembersViewModel">
     <CollectionView
@@ -12,8 +12,7 @@
                 <StackLayout HorizontalOptions="Fill">
                     <Frame CornerRadius="16"
                            Margin="8"
-                           BackgroundColor="LightGray"
-                           x:DataType="viewModels:TeamMemberViewModel">
+                           BackgroundColor="LightGray">
                         <StackLayout>
                             <Label Text="{Binding Name}" FontSize="16" FontAttributes="Bold"/>
                             <Label Text="{Binding NickName}" FontSize="12" TextColor="Gray"/>

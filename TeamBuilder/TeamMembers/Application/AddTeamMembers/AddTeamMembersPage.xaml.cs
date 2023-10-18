@@ -1,9 +1,9 @@
 ﻿namespace TeamBuilder.TeamMembers.Application.AddTeamMembers;
 
-public partial class AddTeamMembersPage : ContentPage
+public partial class AddTeamMembersPage
 {
-	public AddTeamMembersPage()
-	{
-		InitializeComponent();
-	}
+    public AddTeamMembersPage()
+    {
+        InitializeComponent();
+    }
 }

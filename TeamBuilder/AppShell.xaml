@@ -3,14 +3,14 @@
     x:Class="TeamBuilder.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:TeamBuilder.TeamMemberList.Application"
     xmlns:addTeamMembers="clr-namespace:TeamBuilder.TeamMembers.Application.AddTeamMembers"
-    
+    xmlns:application="clr-namespace:TeamBuilder.TeamMembers.Application"
+
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
         Title="The Team"
-        ContentTemplate="{DataTemplate local:TeamMembersPage}"
+        ContentTemplate="{DataTemplate application:TeamMembersPage}"
         Route="MainPage" />
 
     <ShellContent

@@ -19,7 +19,7 @@ namespace TeamBuilder.TeamMembers.Application
             LoadTeamMembers();
         }
 
-        public ObservableCollection<TeamMemberViewModel> TeamMembers { get; private set; }
+        public ObservableCollection<object> TeamMembers { get; private set; }
 
         public ICommand AddNewMembersCommand { get; private set; }
 
@@ -32,11 +32,11 @@ namespace TeamBuilder.TeamMembers.Application
         {
             var teamMembers = await _repository.GetTeamMembers();
 
-            TeamMembers = new ObservableCollection<TeamMemberViewModel>();
+            TeamMembers = new ObservableCollection<object>();
 
             foreach (var member in teamMembers)
             {
-                TeamMembers.Add((TeamMemberViewModel)member);
+                TeamMembers.Add(member);
             }
         }
     }

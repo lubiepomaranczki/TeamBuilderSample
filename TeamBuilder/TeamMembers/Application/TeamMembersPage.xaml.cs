@@ -1,8 +1,6 @@
-﻿using TeamBuilder.TeamMembers.Application;
+﻿namespace TeamBuilder.TeamMembers.Application;
 
-namespace TeamBuilder.TeamMemberList.Application;
-
-public partial class TeamMembersPage : ContentPage
+public partial class TeamMembersPage
 {
     public TeamMembersPage()
     {

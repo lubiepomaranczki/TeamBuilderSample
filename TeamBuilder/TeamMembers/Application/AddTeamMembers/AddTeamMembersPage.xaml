@@ -25,7 +25,7 @@
             </CollectionView.ItemTemplate>
             <CollectionView.Footer>
                 <StackLayout>
-                    <Button Text="Add new" Command="{Binding AppNewCommand}" Margin="16" HorizontalOptions="Center"/>
+                    <Button Text="Add new" Command="{Binding AddNewCommand}" Margin="16" HorizontalOptions="Center"/>
                 </StackLayout>
             </CollectionView.Footer>
         </CollectionView>        
